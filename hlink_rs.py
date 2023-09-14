@@ -16,31 +16,19 @@ from surprise.model_selection import train_test_split, cross_validate, GridSearc
 from surprise import KNNBasic, KNNWithMeans, KNNWithZScore, KNNBaseline, SVD, SVDpp,NormalPredictor
 from surprise import accuracy
 
-# Loading the dataset 
-def loaddata(filename):
-    df = pd.read_csv(filename, sep=',', error_bad_lines=False, warn_bad_lines=False, encoding='latin-1')
-    return df
 
 def preprocessing():
     # Define column names for your data (replace with your actual column names)
-    # column_names_hlink_type = ["Hlink_type_ID", "Title"]
-    # column_names_rating = ["Article_ID", "Hlink_type_ID", "Rating"]
-    # column_names_article = ["Article_ID", "Q_ID", "Language"]#"Title_a",
+    column_names_hlink_type = ["Hlink_type_ID", "Title"]
+    column_names_rating = ["Article_ID", "Hlink_type_ID", "Rating"]
+    column_names_article = ["Article_ID", "Q_ID", "Language"]#"Title_a",
 
     # Load the data with specified column names
-    article   = loaddata("/home/nhuvn/vir_wd/code/data_rec/Article_qid.csv")#,column_names=column_names_article)
-    hlink_type = loaddata("/home/nhuvn/vir_wd/code/data_rec/Hlink_type.csv")#,column_names=column_names_hlink_type)
-    rating = loaddata("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_rating.csv")#,column_names=column_names_rating)
-
+    article = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Article_qid_9.csv", names=column_names_article)
+    hlink_type = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_9.csv", names=column_names_hlink_type)
+    rating = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_rating_9.csv", names=column_names_rating)
+    #Choose languages for dataset
     # article = article[(article['Language'] == 'vi')]#| (article['Language'] == 'ja')]
-
-    article.columns = article.columns.str.strip('ï»¿"')
-    hlink_type.columns = hlink_type.columns.str.strip('ï»¿"')
-    rating.columns = rating.columns.str.strip('ï»¿"')#.str.replace('-', '_')
-
-    # rating = rating.groupby('Article_ID').filter(lambda x: len(x) >= 250)  # Filter articles with at least 250 ratings
-    # rating = rating.groupby('Hlink_type_ID').filter(lambda x: len(x) >= 50)       # Filter hyperlinks with at least 50 ratings
-
 
     # Merge rating with article and hyperlink data
     rating = rating.merge(hlink_type, on="Hlink_type_ID")[['Article_ID','Hlink_type_ID', 'Title', 'Rating']]
