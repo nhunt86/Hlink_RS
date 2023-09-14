@@ -9,12 +9,12 @@ import utils
 from tqdm import tqdm
 import gzip, pickle
 import functions as func
-# database_en = "/home/nhuvn/hyperlink1/database/index_enwiki-20220120.db" 
-database_ja = "/home/nhuvn/hyperlink1/database/index_jawiki-20220120.db"
-# database_vi = "/home/nhuvn/hyperlink1/database/index_viwiki-20220120.db"
+database_en = "index_enwiki-20220120.db" 
+database_ja = "index_jawiki-20220120.db"
+database_vi = "index_viwiki-20220120.db"
 mapper_ja = WikiMapper(database_ja)
-# mapper_vi = WikiMapper(database_vi)
-# mapper_en = WikiMapper(database_en)
+mapper_vi = WikiMapper(database_vi)
+mapper_en = WikiMapper(database_en)
 
 def standard(temp):
     #title =""

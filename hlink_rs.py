@@ -34,9 +34,9 @@ def preprocessing(languages=[]):
     column_names_article = ["Article_ID", "Q_ID", "Language"]#"Title_a",
 
     # Load the data with specified column names
-    article = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Article_qid_9.csv", names=column_names_article)
-    hlink_type = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_9.csv", names=column_names_hlink_type)
-    rating = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_rating_9.csv", names=column_names_rating)
+    article = pd.read_csv("Hlink_RS/Data/Article.csv", names=column_names_article)
+    hlink_type = pd.read_csv("Hlink_RS/Data/Hlink_type.csv", names=column_names_hlink_type)
+    rating = pd.read_csv("Hlink_RS/Data/Hlink_type_ratings.csv", names=column_names_rating)
     #Choose languages for dataset
     
     # article = article[(article['Language'] == 'vi')]#| (article['Language'] == 'ja')]
@@ -87,9 +87,6 @@ def build():
     # Convert the testset to a DataFrame
     test_df = pd.DataFrame(testset, columns=['Article_ID', 'Title', 'Rating'])
 
-    # Save trainset and testset to CSV files
-    train_df.to_csv('/home/nhuvn/vir_wd/code/Hyperlink_RS/train.csv', index=False)
-    test_df.to_csv('/home/nhuvn/vir_wd/code/Hyperlink_RS/test.csv', index=False)
     # sim_options = {
     #     "name": "cosine",
     #     "user_based": True,  # compute  similarities between items
