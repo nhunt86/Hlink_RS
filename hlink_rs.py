@@ -122,5 +122,7 @@ def generate_recommendations(model, user_id, k=10):
 
 
 if __name__ == '__main__':
+    statistic()
+    build()
     
 
