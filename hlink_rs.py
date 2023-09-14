@@ -1,17 +1,7 @@
-# Libraries for data preparation & visualization
 import numpy as np
 import pandas as pd
-import plotly.offline as py
-import plotly.graph_objs as go
-import plotly.io as pio
 import random
 import argparse
-pio.renderers.default = "png"
-
-
-import warnings 
-warnings.filterwarnings("ignore")
-from sklearn.model_selection import train_test_split
 from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split, cross_validate, GridSearchCV
 from surprise import KNNBasic, KNNWithMeans, KNNWithZScore, KNNBaseline, SVD, SVDpp,NormalPredictor
@@ -37,10 +27,10 @@ def preprocessing(languages=[]):
     article = pd.read_csv("Hlink_RS/Data/Articles.csv", names=column_names_article)
     hlink_type = pd.read_csv("Hlink_RS/Data/Hlink_types.csv", names=column_names_hlink_type)
     rating = pd.read_csv("Hlink_RS/Data/Hlink_type_ratings.csv", names=column_names_rating)
+
     #Choose languages for dataset
-    
-    # article = article[(article['Language'] == 'vi')]#| (article['Language'] == 'ja')]
     article = filter_languages(article,languages)
+    
     # Merge rating with article and hyperlink data
     rating = rating.merge(hlink_type, on="Hlink_type_ID")[['Article_ID','Hlink_type_ID', 'Title', 'Rating']]
     rating = rating.merge(article, on="Article_ID")[['Article_ID','Q_ID','Hlink_type_ID', 'Title','Language', 'Rating']]
