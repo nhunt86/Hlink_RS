@@ -16,8 +16,17 @@ from surprise.model_selection import train_test_split, cross_validate, GridSearc
 from surprise import KNNBasic, KNNWithMeans, KNNWithZScore, KNNBaseline, SVD, SVDpp,NormalPredictor
 from surprise import accuracy
 
+def filter_languages(df, languages=[]):
+    if not languages:
+        # No languages specified, return the original DataFrame
+        return df
+    else:
+        # Construct the filtering condition dynamically based on specified languages
+        condition = df['Language'].isin(languages)
+        filtered_df = df[condition]
+        return filtered_df
 
-def preprocessing():
+def preprocessing(languages=[]):
     # Define column names for your data (replace with your actual column names)
     column_names_hlink_type = ["Hlink_type_ID", "Title"]
     column_names_rating = ["Article_ID", "Hlink_type_ID", "Rating"]
@@ -28,8 +37,9 @@ def preprocessing():
     hlink_type = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_9.csv", names=column_names_hlink_type)
     rating = pd.read_csv("/home/nhuvn/vir_wd/code/data_rec/Hlink_type_rating_9.csv", names=column_names_rating)
     #Choose languages for dataset
+    
     # article = article[(article['Language'] == 'vi')]#| (article['Language'] == 'ja')]
-
+    article = filter_languages(article,languages)
     # Merge rating with article and hyperlink data
     rating = rating.merge(hlink_type, on="Hlink_type_ID")[['Article_ID','Hlink_type_ID', 'Title', 'Rating']]
     rating = rating.merge(article, on="Article_ID")[['Article_ID','Q_ID','Hlink_type_ID', 'Title','Language', 'Rating']]
@@ -39,18 +49,14 @@ def preprocessing():
     rating = rating[rating['Rating'] < 11] 
     return rating
 
-def statistic():
+def statistic(languages=[]):
 
     # Count the number of rating in languages
-    rating = preprocessing()
+    rating = preprocessing(languages)
     print("number of ratings")
-    article1 = rating[(rating['Language'] == 'en')]
-    print(len(article1))
-    article2 = rating[(rating['Language'] == 'ja')]
-    print(len(article2))
-    article3 = rating[(rating['Language'] == 'vi')]
-    print(len(article3))
-    # 
+    for i in languages:
+        print(len(rating[(rating['Language'] == i)]))
+     
     # Count the distinct hyperlink types in languages
     distinct_hyperlinks_by_language = rating.groupby('Language')['Hlink_type_ID'].nunique().reset_index()
     distinct_hyperlinks_by_language.columns = ['Language', 'Distinct_Hyperlink_Count']
@@ -122,7 +128,7 @@ def generate_recommendations(model, user_id, k=10):
 
 
 if __name__ == '__main__':
-    statistic()
+    statistic(['vi'])
     build()
     
 
