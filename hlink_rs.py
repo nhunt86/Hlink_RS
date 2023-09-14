@@ -5,6 +5,7 @@ import plotly.offline as py
 import plotly.graph_objs as go
 import plotly.io as pio
 import random
+import argparse
 pio.renderers.default = "png"
 
 
@@ -127,8 +128,35 @@ def generate_recommendations(model, user_id, k=10):
     return [item_id for item_id, _ in predictions[:k]]
 
 
-if __name__ == '__main__':
-    statistic(['vi'])
-    build()
+
+def main():
+    parser = argparse.ArgumentParser(description='Code of Languges')
+    parser.add_argument('--languages', nargs='+', type=str, help='List of languages')
+    parser.add_argument('--action', choices=['statistic', 'build'], default='statistic', help='Choose the action to perform')
+
+    args = parser.parse_args()
+
+    args = parser.parse_args()
+
+    languages = args.languages
+
     
+    if args.action == 'statistic':
+        if languages:
+            print(f'List of languages: {languages}')
+            statistic(languages)
+        else:
+            print('No given languages')
+    elif args.action == 'build':
+        if languages:
+            print(f'List of languages: {languages}')
+            build(languages)
+        else:
+            print('No given languages')
+
+if __name__ == '__main__':
+    main()
+
+#python hlink_rs.py --languages en ja vi --action statistic
+#python hlink_rs.py --languages en ja vi --action build
 
