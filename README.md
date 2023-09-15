@@ -14,11 +14,11 @@ https://github.com/nhunthp/Hlink_RS.git
 - For example:
 Single language:
 ```
-python hlink_recommendation.py --languages en ja vi --action statistic 
+python hlink_recommendation.py --languages vi --action statistic 
 ```
 All languages:
 ```
-python hlink_recommendation.py --languages vi --action statistic 
+python hlink_recommendation.py --languages en ja vi --action statistic 
 ```
 3. Change your "data" directory in the following line of code in the "hlink_recommendation.py" file:
 ```
