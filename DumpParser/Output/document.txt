@@ -1,1 +1,8 @@
-
+Qid = Wikidata id of an item
+WP-id = Wikipedia id of an article/a page
+1. List of WP-id of an article and its hyperlink Qids in English
+https://drive.google.com/file/d/1HX2mpwhfUrEsGv-lPRbuNTR0CEViWhGd/view?usp=share_link
+2. List of WP-id of an article and its hyperlink Qids in Japanese
+https://drive.google.com/file/d/1p29SybfPmSE9kD6-aVxHNeqVPxGGd9-4/view?usp=share_link
+3. List of WP-id of an article and its hyperlink Qids in English in Vietnamese
+https://drive.google.com/file/d/1IZE3HuRal9Mas8F5j_b4hJ0tx1YBq81A/view?usp=share_link
