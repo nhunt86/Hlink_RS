@@ -26,7 +26,7 @@ def preprocessing(languages=[]):
     # Load the data with specified column names
     article = pd.read_csv("Hlink_RS/Data/Articles.csv", names=column_names_article)
     hlink_type = pd.read_csv("Hlink_RS/Data/Hlink_types.csv", names=column_names_hlink_type)
-    rating = pd.read_csv("Hlink_RS/Data/Hlink_type_ratings.csv", names=column_names_rating)
+    rating = pd.read_csv("Hlink_RS/Data/Ratings.csv", names=column_names_rating)
 
     #Choose languages for dataset
     article = filter_languages(article,languages)
@@ -36,8 +36,7 @@ def preprocessing(languages=[]):
     rating = rating.merge(article, on="Article_ID")[['Article_ID','Q_ID','Hlink_type_ID', 'Title','Language', 'Rating']]
     #Filter duplicates
     rating.drop_duplicates(inplace=True)
-    #Filter with rating from 1 to 10:
-    rating = rating[rating['Rating'] < 11] 
+    
     return rating
 
 def statistic(languages=[]):
