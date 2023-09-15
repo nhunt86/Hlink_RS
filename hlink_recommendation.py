@@ -24,9 +24,9 @@ def preprocessing(languages=[]):
     column_names_article = ["Article_ID", "Q_ID", "Language"]#"Title_a",
 
     # Load the data with specified column names
-    article = pd.read_csv("Hlink_RS/Data/Articles.csv", names=column_names_article)
-    hlink_type = pd.read_csv("Hlink_RS/Data/Hlink_types.csv", names=column_names_hlink_type)
-    rating = pd.read_csv("Hlink_RS/Data/Ratings.csv", names=column_names_rating)
+    article = pd.read_csv("../Data/Articles.csv", names=column_names_article)
+    hlink_type = pd.read_csv("../Data/Hlink_types.csv", names=column_names_hlink_type)
+    rating = pd.read_csv("../Data/Ratings.csv", names=column_names_rating)
 
     #Choose languages for dataset
     article = filter_languages(article,languages)
