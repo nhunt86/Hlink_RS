@@ -14,7 +14,7 @@ https://github.com/nhunthp/Hlink_RS.git
 ../Data/'file name.csv'
 ```
 - There are some actions: statistic, build (build model and evaluation) and rec (recommendation)
-- Choose language combination:
+- Choose language combination: 
 - For example:
 
 Single language:
@@ -24,6 +24,8 @@ python hlink_recommendation.py --languages vi --action statistic
 All languages:
 ```
 python hlink_recommendation.py --languages en ja vi --action statistic 
+python hlink_recommendation.py --languages en ja vi --action build
+python hlink_recommendation.py --languages en ja vi --action rec 
 ```
 
 
