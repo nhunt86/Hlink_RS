@@ -1,0 +1,8 @@
+#Data dumps:
+https://dumps.wikimedia.org/jawiki/20220120/jawiki-20220120-langlinks.sql.gz
+https://dumps.wikimedia.org/enwiki/20220120/enwiki-20220120-langlinks.sql.gz
+https://dumps.wikimedia.org/enwiki/20220120/viwiki-20220120-langlinks.sql.gz
+https://dumps.wikimedia.org/viwiki/20220120/enwiki-20220120-page_props.sql.gz
+https://dumps.wikimedia.org/viwiki/20220120/jawiki-20220120-page_props.sql.gz
+https://dumps.wikimedia.org/viwiki/20220120/viwiki-20220120-page_props.sql.gz
+Ver: 20220120
