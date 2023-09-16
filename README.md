@@ -20,6 +20,8 @@ https://github.com/nhunthp/Hlink_RS.git
 Single language:
 ```
 python hlink_recommendation.py --languages vi --action statistic 
+python hlink_recommendation.py --languages vi --action build
+python hlink_recommendation.py --languages vi --action rec  
 ```
 All languages:
 ```
