@@ -30,4 +30,11 @@ python hlink_recommendation.py --languages en ja vi --action build
 python hlink_recommendation.py --languages en ja vi --action rec 
 ```
 
+# Development
 
+The required dependencies are managed by pip. A virtual environment containing all needed packages for development and production can be created and activated by
+```
+- virtualenv --system-site-packages -p python3
+- go to the folder (venv)
+- source bin/active
+```
