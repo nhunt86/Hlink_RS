@@ -106,7 +106,7 @@ def fintune(languages=[], trainset, testset):
                                 'user_based': [False, True]}
              }
 
-    gridsearchKNNWithMeans = GridSearchCV(KNNBasic, param_grid, measures=['mae', 'rmse'], \
+    gridsearchKNNWithMeans = GridSearchCV(KNNBaseline, param_grid, measures=['mae', 'rmse'], \
                                         cv=5, n_jobs=-1)
                                         
     gridsearchKNNWithMeans.fit(data)
@@ -117,7 +117,7 @@ def fintune(languages=[], trainset, testset):
     print(f'RMSE Best Parameters: {gridsearchKNNWithMeans.best_params["rmse"]}')
     print(f'RMSE Best Score:      {gridsearchKNNWithMeans.best_score["rmse"]}\n')
     sim_options = {'name':'cosine','min_support':3,'user_based':False}
-    final_model = KNNBasic(k=50,sim_options=sim_options)
+    final_model = KNNBaseline(k=50,sim_options=sim_options)
 
     # Fitting the model on trainset & predicting on testset, printing test accuracy
     pred = final_model.fit(trainset).test(testset)
@@ -130,7 +130,7 @@ def fintune(languages=[], trainset, testset):
 def KNN_Recommendation(trainset,userID, like_recommend=5):
     # Compute item based similarity matrix
     sim_options       = {'name':'msd','min_support':3,'user_based':False}
-    similarity_matrix = KNNWithMeans(sim_options=sim_options).fit(trainset).\
+    similarity_matrix = KNNBaseline(k=50,sim_options=sim_options).fit(trainset).\
                         compute_similarities() 
     # converts the raw userID to innerID
     userID      = trainset.to_inner_uid(userID)    
