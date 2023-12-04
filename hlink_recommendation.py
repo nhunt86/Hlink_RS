@@ -80,7 +80,7 @@ def build():
         "name": "msd",
         "user_based": False,  
     }
-    models=[KNNBasic(sim_options=sim_options),KNNWithMeans(sim_options=sim_options),KNNWithZScore(sim_options=sim_options),KNNBaseline(sim_options=sim_options),SVD(),SVDpp()] #SlopeOne(),
+    models=[KNNBasic(k=50,sim_options=sim_options),KNNWithMeans(k=50,sim_options=sim_options),KNNWithZScore(k=50,sim_options=sim_options),KNNBaseline(k=50,sim_options=sim_options),SVD()]
     # models=[KNNBasic(),KNNWithMeans(),KNNWithZScore(),KNNBaseline(),SVD(),SVDpp(), NormalPredictor()] #SlopeOne(),
 
     results = {}
@@ -117,7 +117,7 @@ def fintune(languages=[], trainset, testset):
     print(f'RMSE Best Parameters: {gridsearchKNNWithMeans.best_params["rmse"]}')
     print(f'RMSE Best Score:      {gridsearchKNNWithMeans.best_score["rmse"]}\n')
     sim_options = {'name':'cosine','min_support':3,'user_based':False}
-    final_model = KNNBasic(sim_options=sim_options)
+    final_model = KNNBasic(k=50,sim_options=sim_options)
 
     # Fitting the model on trainset & predicting on testset, printing test accuracy
     pred = final_model.fit(trainset).test(testset)
