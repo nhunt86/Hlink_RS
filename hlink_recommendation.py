@@ -4,7 +4,7 @@ import random
 import argparse
 from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split, cross_validate, GridSearchCV
-from surprise import KNNBasic, KNNWithMeans, KNNWithZScore, KNNBaseline, SVD, SVDpp,NormalPredictor
+from surprise import KNNBasic, KNNWithMeans, KNNWithZScore, KNNBaseline, SVD, NormalPredictor
 from surprise import accuracy
 
 def filter_languages(df, languages=[]):
@@ -99,7 +99,7 @@ def build():
 
 
 #Tunning
-def fintune(languages=[], trainset, testset):
+def finetune(languages=[], trainset, testset):
     data = preprocessing(languages)
     param_grid = { 'sim_options' : {'name': ['msd','cosine'], \
                                 'min_support': [3,5], \
