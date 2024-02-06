@@ -11,7 +11,7 @@ https://github.com/nhunthp/Hlink_RS.git
 2. Go to clone folder and run hlink_recommendation.py
 - Change your "data" directory in the following line of code in the "hlink_recommendation.py" file:
 ```
-../Data/'file name.csv'
+../Data/Rich Case/'file name.csv'
 ```
 - There are some actions: statistic, build (build model and evaluation) and rec (recommendation)
 - Choose language combination: en: English, ja: Japanese, vi: Vietnamese

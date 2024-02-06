@@ -1,1 +1,1 @@
-
+This is dataset for evaluating collaborative filtering approach.
