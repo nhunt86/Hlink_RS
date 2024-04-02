@@ -22,7 +22,7 @@ pip install wikimapper
 $ wikimapper create enwiki-latest --dumpdir data --target data/index_enwiki-latest.db 
 ```
 # 3. Using dump parser to extract Wikipedia page ID, source articles and target articles 
-This tool is 
+
 ```
 python ../link_RS/DumpParser/get_cats_n_links.py
 
