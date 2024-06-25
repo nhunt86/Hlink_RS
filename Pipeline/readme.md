@@ -24,7 +24,7 @@ $ wikimapper create enwiki-latest --dumpdir data --target data/index_enwiki-late
 # 3. Using dump parser to extract Wikipedia page ID, source articles and target articles 
 
 ```
-python ../link_RS/DumpParser/get_cats_n_links.py
+python ../Hlink_RS/DumpParser/get_cats_n_links.py
 
 ```
 # 4. Get Wikidata Qid of Wikipedia page ID
