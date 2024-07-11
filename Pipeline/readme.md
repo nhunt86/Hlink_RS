@@ -4,9 +4,9 @@
 - Download the dumps of page, redirect, prop and langlink files
 ```
 https://dumps.wikimedia.org/emwiki/20220120/enwiki-20220120-pages-meta-current1.xml-p1p41242.bz2
-https://dumps.wikimedia.org/emwiki/20220120/enwiki-20220120-langlinks.sl.gz
-https://dumps.wikimedia.org/enwiki/20220120/enwiki-20220120-page_props.sl.gz
-https://dumps.wikimedia.org/enwiki/20220120/enwiki-20220120-redirect.sl.gz
+https://dumps.wikimedia.org/emwiki/20220120/enwiki-20220120-langlinks.sql.gz
+https://dumps.wikimedia.org/enwiki/20220120/enwiki-20220120-page_props.sql.gz
+https://dumps.wikimedia.org/enwiki/20220120/enwiki-20220120-redirect.sql.gz
 
 
 ```
