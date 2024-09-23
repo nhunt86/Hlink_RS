@@ -1,1 +1,0 @@
-This is dataset for evaluating impact of multilingual configuration.

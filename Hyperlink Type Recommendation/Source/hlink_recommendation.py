@@ -217,12 +217,52 @@ def rec(languages = []):
         print(k,len(v))
     
  
+def mae_rmse_user_trained(languages=[], user_range=(0, 999)):
+    rating = preprocessing(languages)
+    reader = Reader(rating_scale=(1, 10))
+    data = Dataset.load_from_df(rating[['Article_ID', 'Hlink_type_ID', 'Rating']], reader)
 
+    # Run cross-validation
+    model = SVD()#KNNBasic(K=50)
+    cv_results = cross_validate(model, data, measures=["MAE", "RMSE"], cv=5, n_jobs=-1, return_train_measures=True)
+    
+    trainset = data.build_full_trainset()
+    model.fit(trainset)
+    testset = trainset.build_testset()
+    predictions = model.test(testset)
+
+    # Create a dictionary to store 
+    user_true_ratings = defaultdict(list)
+    user_pred_ratings = defaultdict(list)
+
+    for pred in predictions:
+        if int(pred.uid) in range(user_range[0], user_range[1] + 1):
+            user_true_ratings[pred.uid].append(pred.r_ui)
+            user_pred_ratings[pred.uid].append(pred.est)
+    
+    # Calculate MAE và RMSE values of users in a range
+    
+    user_metrics = {}
+    for user_id in user_true_ratings:
+        mae = mean_absolute_error(user_true_ratings[user_id], user_pred_ratings[user_id])
+        rmse = mean_squared_error(user_true_ratings[user_id], user_pred_ratings[user_id], squared=False)
+        user_metrics[user_id] = {'MAE': mae, 'RMSE': rmse}
+    print(len(user_metrics))
+    
+    # Average MAE and RMSE values of users
+    mae_values = [metrics['MAE'] for metrics in user_metrics.values()]
+    rmse_values = [metrics['RMSE'] for metrics in user_metrics.values()]
+
+    average_mae = sum(mae_values) / len(mae_values) if mae_values else None
+    average_rmse = sum(rmse_values) / len(rmse_values) if rmse_values else None
+
+    print(f'Average MAE for users in range {user_range}: {average_mae}')
+    print(f'Average RMSE for users in range {user_range}: {average_rmse}')
 
 def main():
     parser = argparse.ArgumentParser(description='Code of Languges')
     parser.add_argument('--languages', nargs='+', type=str, help='List of languages')
-    parser.add_argument('--action', choices=['statistic', 'build','rec'], default='statistic', help='Choose the action to perform')
+    parser.add_argument('--action', choices=['statistic', 'build','rec','mae_rmse_user_trained'], default='statistic', help='Choose the action to perform')
 
     args = parser.parse_args()
 
@@ -247,6 +287,12 @@ def main():
         if languages:
             print(f'List of languages: {languages}')
             rec(languages)
+        else:
+            print('No given languages')
+     elif args.action == 'mae_rmse_user_trained':
+        if languages:
+            print(f'List of languages: {languages}')
+            mae_rmse_user_trained(languages)
         else:
             print('No given languages')
 
