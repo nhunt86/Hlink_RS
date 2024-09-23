@@ -8,7 +8,11 @@ install pandas, surprise
 https://github.com/nhunthp/Hlink_RS.git
 
 ```
-2. Go to clone folder and run hlink_recommendation.py
+2. Go to clone folder
+```
+..Hyperlink Type Recommendation/Source'
+```
+ and run the file hlink_recommendation.py
 - Change your "data" directory in the following line of code in the "hlink_recommendation.py" file:
 ```
 ../Data/Rich_case/'file name.csv'
