@@ -12,8 +12,8 @@ https://github.com/nhunthp/Hlink_RS.git
 ```
 ../Hyperlink Type Recommendation/Source'
 ```
- and run the file "hlink_recommendation.py"
-- Change your "data" directory in the following line of code in the "hlink_recommendation.py" file:
+ and run the file "hlink_type_recommendation.py"
+- Change your "data" directory in the following line of code in the "hlink_type_recommendation.py" file:
 ```
 ../Data/Rich_case/'file name.csv'
 ```
